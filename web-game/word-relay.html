@@ -22,37 +22,41 @@
     let newWord; //새로 입력한 단어
 
     const onClickButton = () => {
-      if (!word) { //제시어가 비어 있나?
+      if (!word || word[word.length -1] === newWord[0]) { //제시어가 비어 있나?
         // ㅇㅇ비어있음
         word = newWord; //입력한 단어가 제시어!
         $word.textContent = word; //화면바꿔주기!
-        $input.value = '';
-        $input.focus();
+        
         const order = Number($order.textContent); //order에 있는 text값은 str이므로 parseInt | Number 로 숫자만들기
         if (order + 1 > number) {
           $order.textContent = 1;
         } else {
           $order.textContent = order + 1;
         }
+        // $input.value = '';
+        // $input.focus(); //겹치는 애들 바깥으로 빼주기
 
       
-      } else {
-        //ㄴㄴ안빔
-        if (word[word.length - 1] === newWord[0]) { //마지막 글자 == 첫글자 ?
-          word = newWord; //입력한 단어가 제시어!
-          $word.textContent = word; //화면바꿔주기!
-          $input.value = '';
-          $input.focus(); //입력창 깜빡거리는거
-          const order = Number($order.textContent); //order에 있는 text값은 str이므로 parseInt | Number 로 숫자만들기
-          if (order + 1 > number) {
-            $order.textContent = 1;
-          } else {
-            $order.textContent = order + 1;
-          }
-        } else { //놉
+      // } else {
+      //   //ㄴㄴ안빔
+      //   if (word[word.length - 1] === newWord[0]) { //마지막 글자 == 첫글자 ?
+      //     word = newWord; //입력한 단어가 제시어!
+      //     $word.textContent = word; //화면바꿔주기!
+      //     $input.value = '';
+      //     $input.focus(); //입력창 깜빡거리는거
+      //     const order = Number($order.textContent); //order에 있는 text값은 str이므로 parseInt | Number 로 숫자만들기
+      //     if (order + 1 > number) {
+      //       $order.textContent = 1;
+      //     } else {
+      //       $order.textContent = order + 1;
+      //     }
+      //   } else { //놉
           alert('올바르지 않은 단어입니다!')
+          // $input.value = '';
+          // $input.focus(); //겹치는 애들 바깥으로 빼주기
         }
-      }
+        $input.value = '';
+        $input.focus();
     };
     const onInput = (event) => {
       newWord = event.target.value;
